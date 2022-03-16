@@ -1,22 +1,22 @@
 
 import { Form, FormGroup, FormControl, Button } from "react-bootstrap";
 import { EmployeeContext } from "../contexts/EmployeeContext";
-import { useState } from "react";
+import { useState,useContext } from "react";
 
 const AddForm = () => {
 
-    const { addEmployee } = useState(EmployeeContext)
+    const { addEmployee } = useContext(EmployeeContext);
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
         addEmployee(name, email, address, phone)
     }
+
 
     return (
         <Form onSubmit={handleSubmit}>
