@@ -1,15 +1,22 @@
-import { useContext,useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
-import Employee from './Employee'
-import { EmployeeContext } from '../contexts/EmployeeContext'
-import AddForm from "./AddForm"
+import Employee from './Employee';
+import { EmployeeContext } from '../contexts/EmployeeContext';
+import AddForm from "./AddForm";
 
 const EmployeeList = () => {
 
   const { employees } = useContext(EmployeeContext)
-  const [show, setShow ] = useState(false)
-  const handleClose = ()=> setShow(false)
-  const handleShow = ()=> setShow(true)
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
+  useEffect(() => {
+    handleClose()
+  }, [employees])
+   const [count,setCount] = useState(0)
+
+
   return (
 
     <>
@@ -57,6 +64,12 @@ const EmployeeList = () => {
         </Modal.Footer>
 
       </Modal>
+    <div>
+      
+      <Button onClick={()=>setCount(count+1)}>clik me</Button>
+      <p> you clicked the  button {count} </p>
+      <Button onClick={()=>setCount(0)}>reset</Button>
+    </div>
 
     </>
 

@@ -1,22 +1,32 @@
 
 import { Form, FormGroup, FormControl, Button } from "react-bootstrap";
 import { EmployeeContext } from "../contexts/EmployeeContext";
-import { useState } from "react";
+import { useState,useContext } from "react";
 
 const AddForm = () => {
 
-    const { addEmployee } = useState(EmployeeContext)
+    const { addEmployee } = useContext(EmployeeContext);
 
-    const [name, setName] = useState("");
+    /*const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
-    const [phone, setPhone] = useState("");
+    const [phone, setPhone] = useState("");*/
+   
+    const [newEmployee, setNewEmployee] = useState(
+        {name:"",email:"",phone:"",address:""}
+        );
+
+        
+    const {name,email,address,phone} = newEmployee;
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         addEmployee(name, email, address, phone)
     }
+const onInputChange = (e)=> {
+    setNewEmployee({...newEmployee,[e.target.name]:e.target.value})
+}
 
     return (
         <Form onSubmit={handleSubmit}>
@@ -24,8 +34,9 @@ const AddForm = () => {
                 <FormControl
                     type="text"
                     placeholder="name"
+                    name="name"
                     value={name}
-                    onChange={e => setName(e.target.value)}
+                    onChange={e => onInputChange(e)}
                     required
                 />
             </FormGroup>
@@ -34,8 +45,9 @@ const AddForm = () => {
                 <FormControl
                     type="email"
                     placeholder="email"
+                    name="email"
                     value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    onChange={e => onInputChange(e)}
                     required
                 />
             </FormGroup>
@@ -43,19 +55,21 @@ const AddForm = () => {
             <FormGroup>
                 <FormControl
                     as="textarea"
-                    placeholder="adress"
+                    placeholder="address"
+                    name="address"
                     value={address}
-                    onChange={e => setAddress(e.target.value)}
+                    onChange={e => onInputChange(e)}
                     rows={3}
                 />
             </FormGroup>
 
             <FormGroup>
                 <FormControl
-                    type="text"
+                    type="number"
                     placeholder="phone"
+                    name="phone"
                     value={phone}
-                    onChange={e => setPhone(e.target.value)}
+                    onChange={e => onInputChange(e)}
 
                 />
             </FormGroup>
