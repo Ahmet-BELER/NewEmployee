@@ -19,7 +19,6 @@ const AddForm = () => {
         
     const {name,email,address,phone} = newEmployee;
 
-
     const handleSubmit = (e) => {
         e.preventDefault();
         addEmployee(name, email, address, phone)
@@ -27,6 +26,7 @@ const AddForm = () => {
 const onInputChange = (e)=> {
     setNewEmployee({...newEmployee,[e.target.name]:e.target.value})
 }
+
 
     return (
         <Form onSubmit={handleSubmit}>
