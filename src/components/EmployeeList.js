@@ -7,11 +7,11 @@ import AddForm from "./AddForm";
 const EmployeeList = () => {
 
   const Ref = useRef(null);
-  console.log(Ref)
+  //console.log(Ref)
 
 
   const onButonClik = ()=> {
-    console.log(Ref.current)
+   // console.log(Ref.current)
     Ref.current.focus();
   }
 
