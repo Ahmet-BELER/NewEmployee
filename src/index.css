@@ -14,6 +14,9 @@ body {
 	min-width: 1000px;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
+.btn-cat {
+	padding: 4px 10px;
+}
 .table-title {        
 	padding-bottom: 15px;
 	background: #435d7d;
@@ -57,7 +60,7 @@ table.table tr th, table.table tr td {
 }
 
 table.table tr th:last-child {
-	width: 100px;
+	width: 150px;
 }
 table.table-striped tbody tr:nth-of-type(odd) {
 	background-color: #fcfcfc;

@@ -1,10 +1,20 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState,useRef } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import Employee from './Employee';
 import { EmployeeContext } from '../contexts/EmployeeContext';
 import AddForm from "./AddForm";
 
 const EmployeeList = () => {
+
+  const Ref = useRef(null);
+  console.log(Ref)
+
+
+  const onButonClik = ()=> {
+    console.log(Ref.current)
+    Ref.current.focus();
+  }
+
 
   const { employees } = useContext(EmployeeContext)
   const [show, setShow] = useState(false)
@@ -14,7 +24,9 @@ const EmployeeList = () => {
   useEffect(() => {
     handleClose()
   }, [employees])
-   const [count,setCount] = useState(0)
+
+  
+   //const [count,setCount] = useState(0)
 
 
   return (
@@ -43,7 +55,18 @@ const EmployeeList = () => {
           </tr>
         </thead>
         <tbody>
-          <Employee employees={employees} />
+{
+
+employees.map((employee) => (
+  <tr key={employee.id}>
+    <Employee employee={employee}/>
+  </tr>
+))
+
+}
+
+
+
         </tbody>
       </table>
 
@@ -64,12 +87,9 @@ const EmployeeList = () => {
         </Modal.Footer>
 
       </Modal>
-    <div>
-      
-      <Button onClick={()=>setCount(count+1)}>clik me</Button>
-      <p> you clicked the  button {count} </p>
-      <Button onClick={()=>setCount(0)}>reset</Button>
-    </div>
+<input ref={Ref} type="text" ></input>
+<button onClick={onButonClik}>Focus</button>
+
 
     </>
 
